@@ -70,15 +70,15 @@ def checkForLinks(record):
 	checklist = record.find("link_checklist").text;
 	certificacion = record.find("link_certificacion").text;
 
-	if (asBuilt != False):
+	if (asBuilt != None):
 		return True;
-	if (listado != False):
+	if (listado != None):
 		return True;
-	if (diseno != False):
+	if (diseno != None):
 		return True;
-	if (checklist != False):
+	if (checklist != None):
 		return True;
-	if (certificacion != False):
+	if (certificacion != None):
 		return True;
 
 
