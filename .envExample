@@ -1,16 +1,16 @@
 # All database ID provided by QuickBase
-DB_ID_CAMTELECOM = bn6g63t5p
-DB_ID_COBRA = bn7k3v9yh
-DB_ID_LARI = bn6eg8f9r
-DB_ID_DOMINION = bndqbnmk6
-DB_ID_ZENER = bn54g79qh
-DB_ID_EZENTIS = bn42kxmsv
-DB_ID_INMOBILIARIO = bnjymk5kz
-DB_ID_HUAWEI = bmb3isnza
+DB_ID_CAMTELECOM = 
+DB_ID_COBRA = 
+DB_ID_LARI = 
+DB_ID_DOMINION = 
+DB_ID_ZENER = 
+DB_ID_EZENTIS = 
+DB_ID_INMOBILIARIO = 
+DB_ID_HUAWEI = 
 
-QB_API_URL = https://tchile.quickbase.com/db/
-QB_FILE_URL = https://tchile.quickbase.com/up/
+QB_API_URL = 
+QB_FILE_URL = 
 
-LOGIN_ID = elizabeth.fuentes@telefonica.com
-LOGIN_PASSWORD = Movistar51
-LOGIN_URL = https://tchile.quickbase.com/db/main?a=SignIn
+LOGIN_ID = 
+LOGIN_PASSWORD = 
+LOGIN_URL = 
