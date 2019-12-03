@@ -1,0 +1,93 @@
+<style type="text/css">
+	a{
+		font-family: monospace;
+		font-size: 16px;
+		margin: 5px;
+		display: inline-block;
+		width: 100%;
+	}
+	#fileList{
+		text-align: left;
+		margin: 0 4%;
+	}
+	.directory::before{
+		content: url(./folder.png);
+	}
+	.file::before{
+		content: url(./file.png);
+	}
+</style>
+<body onload="searchFiles()">
+	<form style="text-align: center" onsubmit="event.preventDefault(); searchFiles();">
+		<input id="query" style="font-size: 16px;" type="text" name="query">
+		<button>Buscar</button>
+	</form>
+	<!-- <button onclick="console.log(directory)">filear</button> -->
+	<div id="fileList"></div>
+</body>
+<script type="text/javascript">
+
+	let directory = ["./"];
+	//let files = {};
+	document.getElementById('query').oninput = searchFiles;
+
+	function searchFiles(){
+
+		let query = document.getElementById('query').value;
+		const request = new Request('./searchFile.php?q=' + query + '&dir=' + directory.join('/'));
+		fetch(request)
+		  .then(response => response.blob())
+		  .then(blob => blob.text())
+		  .then(text => {
+		  	files = JSON.parse(text);
+		  	drawFiles(files)
+		  })
+	}
+
+	function cleanFileList(){
+		let fileList = document.getElementById('fileList');
+		while (fileList.firstChild) {
+			fileList.removeChild(fileList.firstChild);
+		}
+	}
+
+	function drawFiles(files){
+		cleanFileList();
+		makeGoBackOneDirectory();
+
+		files.forEach((item) => {
+			let file = document.createElement("a");
+			if (item.type == "Directory") {
+				file.href =  '#';
+				file.classList.add("directory")
+				file.onclick = () => { directory.push(item.filename); searchFiles(); };
+			}
+			else {
+				file.href =  item.link;
+				file.classList.add("file")
+				file.target =  '_blank';
+			}
+			file.innerHTML = item.filename;
+			fileList.appendChild(file);
+		})
+	}
+
+	function makeGoBackOneDirectory(){
+		let fileList = document.getElementById('fileList');
+		let goUp = document.createElement("a");
+		goUp.href =  '#';
+		goUp.innerHTML = "./";
+		goUp.onclick = () => { 
+			if(directory.length > 1){
+				directory.pop();
+
+			}
+			document.getElementById('query').value = "";
+			searchFiles(); 
+		};
+		fileList.appendChild(goUp);
+	}
+
+</script>
+
+
