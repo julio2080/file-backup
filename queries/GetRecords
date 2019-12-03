@@ -4,7 +4,6 @@
 	<clist>6.36.37.38.39.41.63.367.510.585.586.597.598.599.600.601</clist>
 	<query>
 		{63.GT.6} AND
-		{38.XEX.''} AND
 		{510.CT.'{query}'}
 	</query>
 	<includeRids>1</includeRids>
