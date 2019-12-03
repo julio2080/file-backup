@@ -7,8 +7,6 @@ from setup import get_qb_url
 from requests import session as sessionStart
 from setup import get_base_file_url, get_login_session_info, get_login_url, get_qb_databases_id
 
-locale.setlocale(locale.LC_TIME, 'es-CL')
-
 def getAllRecords(db_ID, despliegue):
 
 	url = get_qb_url() + db_ID;
