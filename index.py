@@ -105,8 +105,6 @@ for record in xmlRoot.findall('record'):
 	if (checkForLinks(record)):
 		continue;
 
-	print("Processing Record: " + recordID + " Identificador: " + identificador);
-
 	if (asBuilt != None):
 		asBuiltFile = getFile(dbID, recordID, 37);
 		filename = "{}_As_Built_{}.dwg".format(identificador, nombreProyecto);
@@ -143,5 +141,7 @@ for record in xmlRoot.findall('record'):
 
 	if (update_list == {}):
 		continue;
+
+	print("Processed Record: " + recordID + " Identificador: " + identificador);
 
 	updateRecord(dbID, recordID, update_list);
