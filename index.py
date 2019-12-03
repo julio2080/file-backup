@@ -37,8 +37,6 @@ def updateRecord(db_ID, rid, fields):
 			#Check app token i don't remember if it's temporary
 			data = data
 		)
-		print(data);
-		print(response.content);
 		return response.content;
 
 def getFile(dbID, recordID, fieldNumber):
