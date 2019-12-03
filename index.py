@@ -79,6 +79,7 @@ for record in xmlRoot.findall('record'):
 	diseno = record.find("diseno").text;
 	checklist = record.find("checklist").text;
 	certificacion = record.find("certificacion").text;
+	print("Processing Record: " + recordID);
 
 	if (asBuilt != None):
 		asBuiltFile = getFile(dbID, recordID, 37);
