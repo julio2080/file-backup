@@ -63,6 +63,25 @@ def saveFile(folder, fileBytes, filename):
 	except Exception as e:
 		pass;
 
+def checkForLinks(record):
+	asBuilt = record.find("link_listado_direcciones").text;
+	listado = record.find("link_asbuilt").text;
+	diseno = record.find("link_plano_diseno").text;
+	checklist = record.find("link_checklist").text;
+	certificacion = record.find("link_certificacion").text;
+
+	if (asBuilt != False):
+		return True;
+	if (listado != False):
+		return True;
+	if (diseno != False):
+		return True;
+	if (checklist != False):
+		return True;
+	if (certificacion != False):
+		return True;
+
+
 nombreDespliegue = "Despliegue Linares"
 nombreProyecto = "EZENTIS"
 url = "10.0.1.27/";
@@ -79,7 +98,11 @@ for record in xmlRoot.findall('record'):
 	listado = record.find("listado_direcciones").text;
 	diseno = record.find("diseno").text;
 	checklist = record.find("checklist").text;
-	certificacion = record.find("certificacion").text;
+	certificacion = record.find("link_certificacion").text;
+
+	if (checkForLinks(record)):
+		continue;
+
 	print("Processing Record: " + recordID + " Identificador: " + identificador);
 
 	if (asBuilt != None):
