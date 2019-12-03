@@ -100,6 +100,8 @@ for record in xmlRoot.findall('record'):
 	checklist = record.find("checklist").text;
 	certificacion = record.find("link_certificacion").text;
 
+	update_list = {};
+
 	if (checkForLinks(record)):
 		continue;
 
@@ -107,38 +109,39 @@ for record in xmlRoot.findall('record'):
 
 	if (asBuilt != None):
 		asBuiltFile = getFile(dbID, recordID, 37);
-		filename = "{}_As_Built_{}.dwg".format(identificador, nombreProyecto)
+		filename = "{}_As_Built_{}.dwg".format(identificador, nombreProyecto);
 		asBuiltLocation = saveFile(nombreDespliegue, asBuiltFile, filename);
+		update_list.update({ "link_listado_direcciones": url + listadoLocation });
 
 	if (listado != None):
 		listadoFile = getFile(dbID, recordID, 38);
 		_, file_extension = os.path.splitext(listado)
 		filename = "{}_Cert_Numero_{}{}".format(identificador, nombreProyecto, file_extension);
 		listadoLocation = saveFile(nombreDespliegue, listadoFile, filename);
+		update_list.update({ "link_asbuilt": url + asBuiltLocation });
 
 	if (diseno != None):
 		disenoFile = getFile(dbID, recordID, 36);
 		_, file_extension = os.path.splitext(diseno)
 		filename = "{}_Plano_Diseno_{}{}".format(identificador, nombreProyecto, file_extension);
 		disenoLocation = saveFile(nombreDespliegue, disenoFile, filename);
+		update_list.update({ "link_checklist": url + checklistLocation });
 
 	if (checklist != None):
 		checklistFile = getFile(dbID, recordID, 39);
 		_, file_extension = os.path.splitext(checklist)
 		filename = "{}_Check_Construccion_{}{}".format(identificador, nombreProyecto, file_extension);
 		checklistLocation = saveFile(nombreDespliegue, checklistFile, filename);
+		update_list.update({ "link_certificacion": url + certificacionLocation });
 
 	if (certificacion != None):
 		certificacionFile = getFile(dbID, recordID, 39);
 		_, file_extension = os.path.splitext(certificacion)
 		filename = "{}_Check_Certificacion_{}{}".format(identificador, nombreProyecto, file_extension);
 		certificacionLocation = saveFile(nombreDespliegue, certificacionFile, filename);
+		update_list.update({ "link_plano_diseno": url + disenoLocation });
 
-	updateRecord(dbID, recordID, {
-		"link_listado_direcciones": url + listadoLocation, 
-		"link_asbuilt": url + asBuiltLocation,
-		"link_checklist": url + checklistLocation,
-		"link_certificacion": url + certificacionLocation,
-		"link_plano_diseno": url + disenoLocation,
-	})
+	if (update_list == {})
+		continue;
 
+	updateRecord(dbID, recordID, update_list);
