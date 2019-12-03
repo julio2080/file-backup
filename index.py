@@ -141,7 +141,7 @@ for record in xmlRoot.findall('record'):
 		certificacionLocation = saveFile(nombreDespliegue, certificacionFile, filename);
 		update_list.update({ "link_certificacion": url + certificacionLocation });
 
-	if (update_list == {})
+	if (update_list == {}):
 		continue;
 
 	updateRecord(dbID, recordID, update_list);
