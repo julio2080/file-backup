@@ -37,6 +37,8 @@ def updateRecord(db_ID, rid, fields):
 			#Check app token i don't remember if it's temporary
 			data = data
 		)
+		print(data);
+		print(response.content);
 		return response.content;
 
 def getFile(dbID, recordID, fieldNumber):
@@ -59,12 +61,13 @@ def saveFile(folder, fileBytes, filename):
 		f = open(fileLocation, "wb+")
 		f.write(fileBytes);
 		f.close();
-		return fileLocation;
+		return folder + "/" + filename;
 	except Exception as e:
 		pass;
 
 nombreDespliegue = "Despliegue Linares"
 nombreProyecto = "EZENTIS"
+url = "10.0.1.27/";
 
 dbID = get_qb_databases_id()[nombreProyecto];
 records = getAllRecords(dbID, nombreDespliegue);
@@ -79,7 +82,7 @@ for record in xmlRoot.findall('record'):
 	diseno = record.find("diseno").text;
 	checklist = record.find("checklist").text;
 	certificacion = record.find("certificacion").text;
-	print("Processing Record: " + recordID);
+	print("Processing Record: " + recordID + " Identificador: " + identificador);
 
 	if (asBuilt != None):
 		asBuiltFile = getFile(dbID, recordID, 37);
@@ -95,7 +98,7 @@ for record in xmlRoot.findall('record'):
 	if (diseno != None):
 		disenoFile = getFile(dbID, recordID, 36);
 		_, file_extension = os.path.splitext(diseno)
-		filename = "{}_Plano_Diseño_{}{}".format(identificador, nombreProyecto, file_extension);
+		filename = "{}_Plano_Diseno_{}{}".format(identificador, nombreProyecto, file_extension);
 		disenoLocation = saveFile(nombreDespliegue, disenoFile, filename);
 
 	if (checklist != None):
@@ -109,12 +112,12 @@ for record in xmlRoot.findall('record'):
 		_, file_extension = os.path.splitext(certificacion)
 		filename = "{}_Check_Certificacion_{}{}".format(identificador, nombreProyecto, file_extension);
 		certificacionLocation = saveFile(nombreDespliegue, certificacionFile, filename);
-	"""updateRecord(dbID, recordID, {
-		"link_listado_direcciones": listadoLocation, 
-		"link_asbuilt": asBuiltLocation,
-		"link_asbuilt": asBuiltLocation,
-		"link_asbuilt": asBuiltLocation,
-		"link_asbuilt": asBuiltLocation,
-		"link_asbuilt": asBuiltLocation,
-	})"""
+
+	updateRecord(dbID, recordID, {
+		"link_listado_direcciones": url + listadoLocation, 
+		"link_asbuilt": url + asBuiltLocation,
+		"link_checklist": url + checklistLocation,
+		"link_certificacion": url + certificacionLocation,
+		"link_plano_diseno": url + disenoLocation,
+	})
 
