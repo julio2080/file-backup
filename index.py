@@ -98,7 +98,7 @@ for record in xmlRoot.findall('record'):
 	listado = record.find("listado_direcciones").text;
 	diseno = record.find("diseno").text;
 	checklist = record.find("checklist").text;
-	certificacion = record.find("link_certificacion").text;
+	certificacion = record.find("certificacion").text;
 
 	update_list = {};
 
