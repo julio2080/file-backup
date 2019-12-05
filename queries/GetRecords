@@ -1,7 +1,7 @@
 <qdbapi>
 	<ticket>9_bqe6jmn8m_b3m2z7_jxig_a_-b_dvak4hjcppstebdzsbm64d2au7pqc8swthhcgi9sipgntdeucr9ebnd_cxmmg24</ticket>
 	<apptoken>bpz5vrjcjdnzngbs8h5agu7dt4h</apptoken>
-	<clist>6.36.37.38.39.41.63.367.510.563.564.565.566.567.585.586.589.590.591.592.593.597.598.599.600.601.</clist>
+	<clist>6.36.37.38.39.41.63.367.510.561.562.563.564.565.566.567.585.586.589.590.591.592.593.597.598.599.600.601.</clist>
 	<query>
 		{63.GT.6} AND
 		{510.CT.'{query}'}
