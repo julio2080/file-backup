@@ -1,4 +1,7 @@
 <style type="text/css">
+	body{
+		background-color: #f9f9f9
+	}
 	a{
 		font-family: monospace;
 		font-size: 16px;
@@ -17,7 +20,7 @@
 		content: url(./file.png);
 	}
 	a:hover{
-		background-color: #f6f6f6;
+		background-color: #e0ddff;
 	}
 </style>
 <body onload="searchFiles()">
@@ -57,7 +60,7 @@
 	function drawFiles(files){
 		cleanFileList();
 		makeGoBackOneDirectory();
-
+		makeCurrentDirectory(directory);
 		files.forEach((item) => {
 			let file = document.createElement("a");
 			if (item.type == "Directory") {
@@ -88,6 +91,14 @@
 			document.getElementById('query').value = "";
 			searchFiles(); 
 		};
+		fileList.appendChild(goUp);
+	}
+
+	function makeCurrentDirectory(){
+		let fileList = document.getElementById('fileList');
+		let goUp = document.createElement("a");
+		goUp.href =  '#';
+		goUp.innerHTML = directory.join('/');
 		fileList.appendChild(goUp);
 	}
 
