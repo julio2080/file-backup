@@ -9,6 +9,9 @@
 		display: inline-block;
 		width: 100%;
 	}
+	a.current{
+		text-align: center;
+	}
 	#fileList{
 		text-align: left;
 		margin: 0 4%;
@@ -96,10 +99,11 @@
 
 	function makeCurrentDirectory(){
 		let fileList = document.getElementById('fileList');
-		let goUp = document.createElement("a");
-		goUp.href =  '#';
-		goUp.innerHTML = directory.join('/');
-		fileList.appendChild(goUp);
+		let currentDirectory = document.createElement("a");
+		currentDirectory.classList.add("current")
+		currentDirectory.href =  '#';
+		currentDirectory.innerHTML = directory.join('/');
+		fileList.appendChild(currentDirectory);
 	}
 
 </script>
