@@ -63,7 +63,9 @@
 	function drawFiles(files){
 		cleanFileList();
 		makeGoBackOneDirectory();
-		makeCurrentDirectory(directory);
+		if (directory.length >= 2) {
+			makeCurrentDirectory(directory);
+		}
 		files.forEach((item) => {
 			let file = document.createElement("a");
 			if (item.type == "Directory") {
